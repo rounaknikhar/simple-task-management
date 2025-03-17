@@ -4,6 +4,7 @@ import { Head, Link, router, usePage } from "@inertiajs/vue3";
 import PrimaryLink from "@/Components/PrimaryLink.vue";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
+import DangerButton from "@/Components/DangerButton.vue";
 
 const page = usePage();
 
@@ -21,6 +22,16 @@ const handleTaskStatus = (taskId) => {
     );
     // Display the success message by deafult.
     toast.success(page.props.flash.message ?? 'Task status updated');
+};
+
+const deleteTask = (taskId) => {
+    router.delete(
+        route("tasks.destroy", {
+            task: taskId,
+        })
+    );
+    // Display the success message by deafult.
+    toast.success(page.props.flash.message ?? 'Task has been deleted');
 };
 </script>
 <template>
@@ -79,7 +90,7 @@ const handleTaskStatus = (taskId) => {
                                                 @change="handleTaskStatus(task.id)"
                                                 :checked="task.complete"
                                                 type="checkbox"
-                                                class="w-4 h-4 text-zinc-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-zinc-500 dark:focus:ring-zinc-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                                class="cursor-pointer w-4 h-4 text-zinc-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-zinc-500 dark:focus:ring-zinc-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                             />
                                             <label
                                                 for="checkbox-table-search-1"
@@ -117,9 +128,14 @@ const handleTaskStatus = (taskId) => {
                                     <td class="px-6 py-4">
                                         <PrimaryLink
                                             :href="route('tasks.edit', {task: task.id})"
-                                            class="btn btn-primary"
                                             >Edit
                                         </PrimaryLink>
+
+                                        <DangerButton
+                                            @click="deleteTask(task.id)"
+                                            class="ml-1"
+                                            >Delete
+                                        </DangerButton>
                                     </td>
                                 </tr>
                             </tbody>
