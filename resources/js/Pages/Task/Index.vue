@@ -1,9 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head } from "@inertiajs/vue3";
-import { ref } from "vue";
-import { Link, usePage } from "@inertiajs/vue3";
-import { router } from "@inertiajs/vue3";
+import { Head, Link, router, usePage } from "@inertiajs/vue3";
 import PrimaryLink from "@/Components/PrimaryLink.vue";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
@@ -20,17 +17,10 @@ const handleTaskStatus = (taskId) => {
     router.post(
         route("handle.task.status", {
             task: taskId,
-        }),
-        {
-            preserveScroll: true,
-        }
+        })
     );
-
-    // Bug to check: on first submission,
-    // doesn't display success message, even though
-    // the message has been correctly passing through.
-    // But the second onwards, displaying mesage correctly.
-    toast.success(page.props.flash.message);
+    // Display the success message by deafult.
+    toast.success(page.props.flash.message ?? 'Task status updated');
 };
 </script>
 <template>
