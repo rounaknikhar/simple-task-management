@@ -14,7 +14,7 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Response
     {
         return Inertia::render('Task/Index', [
             'tasks' => auth()->user()->tasks()->paginate(10),
@@ -24,7 +24,7 @@ class TaskController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Task/Create');
     }
@@ -42,7 +42,7 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Task $task)
+    public function show(Task $task): Response
     {
         $this->authorize('show', $task);
 
@@ -72,6 +72,7 @@ class TaskController extends Controller
         $this->authorize('update', $task);
 
         $formFields = $request->validated();
+
         $task->update($formFields);
 
         return redirect()->route('tasks.index')->with('message', 'Task details updated');

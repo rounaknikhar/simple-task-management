@@ -39,6 +39,13 @@ const showingNavigationDropdown = ref(false);
                                 >
                                     Tasks
                                 </NavLink>
+
+                                <NavLink
+                                    :href="route('tags.index')"
+                                    :active="route().current('tags.index')"
+                                >
+                                    Tags
+                                </NavLink>
                             </div>
                         </div>
 
@@ -145,6 +152,13 @@ const showingNavigationDropdown = ref(false);
                             :active="route().current('tasks.index')"
                         >
                             Tasks
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink
+                            :href="route('tags.index')"
+                            :active="route().current('tags.index')"
+                        >
+                            Tags
                         </ResponsiveNavLink>
                     </div>
 

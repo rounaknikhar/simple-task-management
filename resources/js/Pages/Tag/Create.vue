@@ -1,0 +1,21 @@
+<script setup>
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import { Head } from "@inertiajs/vue3";
+import TagForm from "./_partials/TagForm.vue";
+</script>
+
+<template>
+    <Head title="Create tag" />
+
+    <AuthenticatedLayout>
+        <template #header>
+            <h2
+                class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200"
+            >
+                Create tag
+            </h2>
+        </template>
+
+        <TagForm />
+    </AuthenticatedLayout>
+</template>
