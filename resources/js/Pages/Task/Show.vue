@@ -3,6 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import DeleteTask from "./_partials/DeleteTask.vue";
 import PrimaryLink from "@/Components/PrimaryLink.vue";
+import AssignedTagPill from "./_partials/AssignedTagPill.vue";
 
 defineProps({
     task: {
@@ -67,6 +68,32 @@ defineProps({
                             <div class="mb-4">
                                 <span class="block text-md font-semibold">Created by</span>
                                 <span class="block text-sm">{{ task.user.name }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="mt-2 overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800"
+                >
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold">Manage tags</h3>
+                        <div class="mt-4">
+                            <div class="w-full">
+                                <div class="p-3 max-h-[400px] min-h-[200px] overflow-y-auto card rounded-sm shadow-md w-full m-1">
+                                    <h4 class="text-md font-semibold my-2">Assigned tags</h4>
+                                    <div class="flex flex-row flex-wrap">
+                                        <AssignedTagPill
+                                        v-if="task.tags.length > 0"
+                                            v-for="tag in task.tags"
+                                            :name="tag.name"
+                                            :hideActionButton="true"
+                                        />
+                                        <span v-else class="text-sm text-gray-400">
+                                            No tag has been assigned to this task
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

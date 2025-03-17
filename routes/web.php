@@ -21,7 +21,10 @@ Route::middleware('auth')->group(function () {
 Route::resource('tasks', TaskController::class)->middleware(['auth', 'verified']);
 // Handle task status.
 Route::post('/tasks/{task}/handle-status/', [TaskController::class, 'handleStatus'])->name('handle.task.status');
-
+// Attach a tag to the task route.
+Route::get('/tasks/{task}/{tag}/add', [TaskController::class, 'addTag'])->name('task.add.tag');
+// Remove a tag from the task route.
+Route::get('/tasks/{task}/{tag}/remove', [TaskController::class, 'removeTag'])->name('task.remove.tag');
 // Tag routes.
 Route::middleware(['auth', 'verified'])
     ->prefix('tags')

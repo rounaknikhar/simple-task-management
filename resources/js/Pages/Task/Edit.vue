@@ -9,11 +9,16 @@ import TextInput from "@/Components/TextInput.vue";
 import Textarea from "@/Components/Textarea.vue";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
+import AvailableTagPill from "./_partials/AvailableTagPill.vue";
+import AssignedTagPill from "./_partials/AssignedTagPill.vue";
 
 const props = defineProps({
     task: {
         type: Object,
     },
+    availableTags: {
+        type: Array
+    }
 });
 
 const statusCheckedState = ref({
@@ -114,6 +119,43 @@ const submit = () => {
                                 </PrimaryButton>
                             </div>
                         </form>
+                    </div>
+                </div>
+                <div
+                    class="mt-2 overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800"
+                >
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold">Manage tags</h3>
+                        <div class="mt-4">
+                            <div class="flex flex-col sm:flex-row w-full">
+                                <div class="p-3 max-h-[400px] min-h-[200px] overflow-y-auto card rounded-sm shadow-md w-full m-1">
+                                    <h4 class="text-md font-semibold my-2">Assigned tags</h4>
+                                    <div class="flex flex-row flex-wrap">
+                                        <AssignedTagPill
+                                        v-if="props.task.tags.length > 0"
+                                            v-for="tag in props.task.tags"
+                                            :name="tag.name"
+                                            :taskId="props.task.id"
+                                            :tagId="tag.id"
+                                        />
+                                        <span v-else class="text-sm text-gray-400">
+                                            No tag has been assigned to this task
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="p-3 max-h-[400px] min-h-[200px] overflow-y-auto card rounded-sm shadow-md w-full m-1 mt-3 sm:mt-1">
+                                    <h4 class="text-md font-semibold my-2">Available tags</h4>
+                                    <div class="flex flex-row flex-wrap">
+                                        <AvailableTagPill
+                                            v-for="tag in availableTags"
+                                            :name="tag.name"
+                                            :taskId="props.task.id"
+                                            :tagId="tag.id"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

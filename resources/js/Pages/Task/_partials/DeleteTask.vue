@@ -24,7 +24,7 @@ const deleteTask = () => {
 </script>
 
 <template>
-    <DangerButton @click="deleteTask" class="mt-1 md:ml-1 md:mt-0">
+    <DangerButton @click="deleteTask" class="mt-1 sm:ml-1 sm:mt-0">
         Delete
     </DangerButton>
 </template>

@@ -4,7 +4,6 @@ import { Head, Link, router, usePage } from "@inertiajs/vue3";
 import PrimaryLink from "@/Components/PrimaryLink.vue";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
-import DangerButton from "@/Components/DangerButton.vue";
 import DeleteTask from "./_partials/DeleteTask.vue";
 
 const page = usePage();
