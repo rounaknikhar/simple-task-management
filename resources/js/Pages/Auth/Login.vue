@@ -95,6 +95,15 @@ const submit = () => {
                     Log in
                 </PrimaryButton>
             </div>
+            <div class="mt-4">
+                <Link
+                    v-if="canResetPassword"
+                    :href="route('register')"
+                    class="block rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
+                >
+                    Don't have an account?
+                </Link>
+            </div>
         </form>
     </GuestLayout>
 </template>

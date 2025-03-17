@@ -5,6 +5,7 @@ import PrimaryLink from "@/Components/PrimaryLink.vue";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
 import DangerButton from "@/Components/DangerButton.vue";
+import DeleteTask from "./_partials/DeleteTask.vue";
 
 const page = usePage();
 
@@ -22,16 +23,6 @@ const handleTaskStatus = (taskId) => {
     );
     // Display the success message by deafult.
     toast.success(page.props.flash.message ?? 'Task status updated');
-};
-
-const deleteTask = (taskId) => {
-    router.delete(
-        route("tasks.destroy", {
-            task: taskId,
-        })
-    );
-    // Display the success message by deafult.
-    toast.success(page.props.flash.message ?? 'Task has been deleted');
 };
 </script>
 <template>
@@ -57,13 +48,13 @@ const deleteTask = (taskId) => {
                         </PrimaryLink>
                     </div>
                     <div
-                        class="relative overflow-x-auto shadow-md sm:rounded-lg"
+                        class="relative overflow-x-auto shadow-md"
                     >
                         <table
                             class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
                         >
                             <thead
-                                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+                                class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400"
                             >
                                 <tr>
                                     <th scope="col" class="p-4"></th>
@@ -81,7 +72,8 @@ const deleteTask = (taskId) => {
                             </thead>
                             <tbody>
                                 <tr
-                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+                                    v-if="tasks.total > 0"
+                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200"
                                     v-for="task in tasks.data"
                                 >
                                     <td class="w-4 p-4">
@@ -105,7 +97,7 @@ const deleteTask = (taskId) => {
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                         :class="task.complete ? 'line-through': ''"
                                     >
-                                        {{ task.name }}
+                                        <Link :href="route('tasks.show', {task: task.id})" class="underline hover:text-gray-400 transition duration-150 ease-in-out">{{ task.name }}</Link>
                                     </th>
                                     <td class="px-6 py-4">
                                         {{ task.created_at }}
@@ -131,11 +123,12 @@ const deleteTask = (taskId) => {
                                             >Edit
                                         </PrimaryLink>
 
-                                        <DangerButton
-                                            @click="deleteTask(task.id)"
-                                            class="ml-1"
-                                            >Delete
-                                        </DangerButton>
+                                        <DeleteTask :taskId="task.id"/>
+                                    </td>
+                                </tr>
+                                <tr v-else>
+                                    <td colspan="5" class="p-4 text-center">
+                                        <span class="text-sm">Your task list is empty</span>
                                     </td>
                                 </tr>
                             </tbody>

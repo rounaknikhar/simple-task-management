@@ -6,8 +6,6 @@ use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -46,14 +44,21 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        $this->authorize('show', $task);
+
+        // Eager load the related task creator.
+        $task->load('user');
+
+        return Inertia::render('Task/Show', ['task' => $task]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Task $task)
+    public function edit(Task $task): Response
     {
+        $this->authorize('edit', $task);
+
         return Inertia::render('Task/Edit', [
             'task' => $task
         ]);
@@ -75,7 +80,7 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task)
+    public function destroy(Task $task): RedirectResponse
     {
         $this->authorize('delete', $task);
 

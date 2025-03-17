@@ -11,6 +11,14 @@ class TaskPolicy
     /**
      * Determine whether the user can edit models.
      */
+    public function show(User $user, Task $task): Response
+    {
+        return $this->canAccess($user, $task);
+    }
+
+    /**
+     * Determine whether the user can edit models.
+     */
     public function edit(User $user, Task $task): Response
     {
         return $this->canAccess($user, $task);
