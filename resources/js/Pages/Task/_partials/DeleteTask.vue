@@ -1,14 +1,14 @@
 <script setup>
 import { router, usePage } from "@inertiajs/vue3";
+import DangerButton from "@/Components/DangerButton.vue";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
-import DangerButton from "@/Components/DangerButton.vue";
 
 const page = usePage();
 
 const props = defineProps({
     taskId: {
-        type: Object,
+        type: Number,
     },
 });
 

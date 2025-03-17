@@ -54,7 +54,7 @@ defineProps({
                                 {{ task.name }}
                             </h2>
                             <p
-                                class="mb-0 text-lg font-normal text-gray-500 dark:text-gray-400 mb-6"
+                                class="mb-0 text-lg font-normal text-gray-500 dark:text-gray-400"
                             >
                                 {{ task.description }}
                             </p>
