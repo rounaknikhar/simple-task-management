@@ -42,17 +42,16 @@ const submit = () => {
                     class="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800"
                 >
                     <div
-                        class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"
+                        class="w-full p-4 bg-white rounded-lg sm:p-6 md:p-8 dark:bg-gray-800"
                     >
                         <form @submit.prevent="submit" class="mx-0">
-                            <div>
+                            <div class="mb-4">
                                 <InputLabel for="name" value="Name" />
                                 <TextInput
                                     id="name"
                                     type="name"
-                                    class="mt-1 block w-full"
+                                    class="mt-1 block w-full py-3 px-2 border"
                                     v-model="form.name"
-                                    autofocus
                                 />
                                 <InputError
                                     class="mt-2"
@@ -69,7 +68,6 @@ const submit = () => {
                                     type="description"
                                     class="mt-1 block w-full"
                                     v-model="form.description"
-                                    autofocus
                                 />
                                 <InputError
                                     class="mt-2"

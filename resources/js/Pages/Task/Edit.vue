@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, useForm, usePage } from "@inertiajs/vue3";
+import { ref } from 'vue';
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
@@ -15,12 +16,16 @@ const props = defineProps({
     },
 });
 
+const statusCheckedState = ref({
+    complete: Boolean(props.task?.complete)
+});
+
 const page = usePage();
 
 const form = useForm({
     name: props.task?.name,
     description: props.task?.description,
-    complete: props.task?.complete
+    complete: statusCheckedState.value.complete
 });
 
 const submit = () => {
@@ -49,17 +54,16 @@ const submit = () => {
                     class="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800"
                 >
                     <div
-                        class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"
+                        class="w-full p-4 bg-white rounded-lg sm:p-6 md:p-8 dark:bg-gray-800"
                     >
                         <form @submit.prevent="submit" class="mx-0">
-                            <div>
+                            <div class="mb-4">
                                 <InputLabel for="name" value="Name" />
                                 <TextInput
                                     id="name"
                                     type="name"
-                                    class="mt-1 block w-full"
+                                    class="mt-1 block w-full py-3 px-2 border"
                                     v-model="form.name"
-                                    autofocus
                                 />
                                 <InputError
                                     class="mt-2"
@@ -76,7 +80,6 @@ const submit = () => {
                                     type="description"
                                     class="mt-1 block w-full"
                                     v-model="form.description"
-                                    autofocus
                                 />
                                 <InputError
                                     class="mt-2"
@@ -85,10 +88,9 @@ const submit = () => {
                             </div>
                             <div class="flex items-center">
                                 <input
-                                    :checked="form.complete"
-                                    v-model="form.complete"
                                     type="checkbox"
-                                    class="mr-4 my-4 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                    v-model="form.complete"
+                                    class="mr-4 my-4 w-4 h-4 text-zinc-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-zinc-500 dark:focus:ring-zinc-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                 />
                                 <label
                                     for="checkbox-table-search-1"

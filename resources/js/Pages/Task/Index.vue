@@ -79,7 +79,7 @@ const handleTaskStatus = (taskId) => {
                                                 @change="handleTaskStatus(task.id)"
                                                 :checked="task.complete"
                                                 type="checkbox"
-                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                                class="w-4 h-4 text-zinc-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-zinc-500 dark:focus:ring-zinc-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                             />
                                             <label
                                                 for="checkbox-table-search-1"
@@ -92,6 +92,7 @@ const handleTaskStatus = (taskId) => {
                                     <th
                                         scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                        :class="task.complete ? 'line-through': ''"
                                     >
                                         {{ task.name }}
                                     </th>
@@ -114,11 +115,11 @@ const handleTaskStatus = (taskId) => {
                                         </span>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <Link
+                                        <PrimaryLink
                                             :href="route('tasks.edit', {task: task.id})"
-                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                            >Edit</Link
-                                        >
+                                            class="btn btn-primary"
+                                            >Edit
+                                        </PrimaryLink>
                                     </td>
                                 </tr>
                             </tbody>
