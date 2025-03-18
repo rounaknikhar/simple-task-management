@@ -13,3 +13,5 @@ php artisan migrate
 npm run dev
 php artisan serve
 ```
+
+Live preview: https://simple-task-management.rounak-nikhar.com
