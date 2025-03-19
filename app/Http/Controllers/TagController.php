@@ -56,9 +56,7 @@ class TagController extends Controller
     {
         $this->authorize('update', $tag);
 
-        $formFields = $request->validated();
-
-        $tag->update($formFields);
+        $tag->update($request->validated());
 
         return redirect()->route('tags.index')->with('message', 'Tag details updated');
     }

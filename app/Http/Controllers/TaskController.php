@@ -47,11 +47,8 @@ class TaskController extends Controller
     {
         $this->authorize('show', $task);
 
-        // Eager load the related task creator.
-        $task->load('user');
-
-        // Eager load the assigned tags.
-        $task->load('tags');
+        // Eager load the required data.
+        $task->load(['user', 'tags']);
 
         return Inertia::render('Task/Show', ['task' => $task]);
     }
@@ -83,9 +80,7 @@ class TaskController extends Controller
     {
         $this->authorize('update', $task);
 
-        $formFields = $request->validated();
-
-        $task->update($formFields);
+        $task->update($request->validated());
 
         return redirect()->route('tasks.index')->with('message', 'Task details updated');
     }
