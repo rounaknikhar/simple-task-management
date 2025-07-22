@@ -1,5 +1,5 @@
 <script setup>
-import { router, usePage } from "@inertiajs/vue3";
+import { router, usePage, Link } from "@inertiajs/vue3";
 import DangerButton from "@/Components/DangerButton.vue";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
@@ -10,6 +10,14 @@ const props = defineProps({
     taskId: {
         type: Number,
     },
+    simpleLink: {
+        type: Boolean,
+        default: false
+    },
+    active: {
+        type: Boolean,
+        default: false
+    }
 });
 
 const deleteTask = () => {
@@ -24,7 +32,12 @@ const deleteTask = () => {
 </script>
 
 <template>
-    <DangerButton @click="deleteTask" class="mt-1 sm:ml-1 sm:mt-0">
+    <button class="w-full text-left"
+        :class="[active ? 'bg-gray-100 text-gray-900 outline-hidden' : 'text-gray-700', 'block px-4 py-2 text-sm']"
+        v-if="simpleLink" @click="deleteTask">
+        Delete
+    </button>
+    <DangerButton @click="deleteTask" class="mt-1 sm:ml-1 sm:mt-0" v-else>
         Delete
     </DangerButton>
 </template>
