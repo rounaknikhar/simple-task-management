@@ -5,6 +5,7 @@ import PrimaryLink from "@/Components/PrimaryLink.vue";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
 import TaskCard from "@/Components/Task/TaskCard.vue";
+import TaskFilter from "@/Components/Task/TaskFilter.vue";
 
 const page = usePage();
 
@@ -24,12 +25,11 @@ defineProps({
                 My Tasks
             </h2>
         </template>
-
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-
                 <div class="overflow-hidden pb-4">
-                    <div class="my-4 mr-4 flex justify-end">
+                    <div class="my-4 mr-4 flex justify-between">
+                        <TaskFilter />
                         <PrimaryLink class="ms-4" :href="route('tasks.create')">
                             Add task
                         </PrimaryLink>
