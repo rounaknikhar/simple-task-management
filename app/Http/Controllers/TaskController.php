@@ -9,16 +9,20 @@ use App\Models\Tag;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
         return Inertia::render('Task/Index', [
-            'tasks' => auth()->user()->tasks()->with(['user', 'tags'])->paginate(10),
+            'tasks' => auth()->user()->tasks()->with(['user', 'tags'])
+            ->when($request->search, function ($query, $task){
+                $query->where('name', 'LIKE', '%' .$task. '%');
+            })->get(),
         ]);
     }
 
