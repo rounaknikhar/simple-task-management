@@ -17,10 +17,12 @@ const handleTaskStatus = (taskId) => {
     router.post(
         route("handle.task.status", {
             task: taskId,
-        })
+        }),
+        null, {
+        preserveScroll: true,
+        onSuccess: () => toast.success(page.props.flash.message),
+    }
     );
-    // Display the success message by deafult.
-    toast.success(page.props.flash.message ?? 'Task status updated');
 };
 </script>
 <template>

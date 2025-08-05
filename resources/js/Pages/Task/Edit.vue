@@ -30,7 +30,8 @@ const page = usePage();
 const form = useForm({
     name: props.task?.name,
     description: props.task?.description,
-    complete: statusCheckedState.value.complete
+    complete: statusCheckedState.value.complete,
+    due_by: props.task?.due_by
 });
 
 const submit = () => {
@@ -67,6 +68,12 @@ const submit = () => {
                                 <InputLabel for="description" value="Description" />
                                 <Textarea id="description" type="description" class="mt-1 block w-full"
                                     v-model="form.description" />
+                                <InputError class="mt-2" :message="form.errors.description" />
+                            </div>
+                            <div>
+                                <InputLabel for="due_by" value="Due date" />
+                                <Input type="date" name="due_by" id="due_by" v-model="form.due_by"
+                                    class="mt-1 block w-full py-3 px-2 border" />
                                 <InputError class="mt-2" :message="form.errors.description" />
                             </div>
                             <div class="flex items-center">
