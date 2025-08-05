@@ -22,7 +22,9 @@ class TaskController extends Controller
             'tasks' => auth()->user()->tasks()->with(['user', 'tags'])
             ->when($request->search, function ($query, $task){
                 $query->where('name', 'LIKE', '%' .$task. '%');
-            })->get(),
+            })
+            ->orderBy('due_by', 'ASC')
+            ->get(),
         ]);
     }
 

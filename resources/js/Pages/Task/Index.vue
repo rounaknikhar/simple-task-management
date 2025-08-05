@@ -3,7 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { router, Head, usePage, useForm, WhenVisible } from "@inertiajs/vue3";
 import PrimaryLink from "@/Components/PrimaryLink.vue";
 import TaskCard from "@/Components/Task/TaskCard.vue";
-import TextInput from "@/Components/TextInput.vue";
+import Input from "@/Components/Input.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import { ref, watch } from 'vue';
 
@@ -41,7 +41,7 @@ watch(searchForm, (value) => {
                         <!-- Search -->
                         <form class="mx-0 mb-4">
                             <div class="w-full flex flex-row align-middle justify-center">
-                                <TextInput id="search" type="text" placeholder="Search a task..." class="py-1 w-full"
+                                <Input id="search" type="text" placeholder="Search a task..." class="py-1 w-full"
                                     v-model="searchForm.search" autofocus />
                             </div>
                         </form>

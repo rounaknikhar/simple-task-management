@@ -4,7 +4,7 @@ import { Head, useForm, usePage } from "@inertiajs/vue3";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import TextInput from "@/Components/TextInput.vue";
+import Input from "@/Components/Input.vue";
 import Textarea from "@/Components/Textarea.vue";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
@@ -14,6 +14,7 @@ const page = usePage();
 const form = useForm({
     name: "",
     description: "",
+    due_by: ""
 });
 
 const submit = () => {
@@ -25,63 +26,43 @@ const submit = () => {
 </script>
 
 <template>
+
     <Head title="Create task" />
 
     <AuthenticatedLayout>
         <template #header>
-            <h2
-                class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200"
-            >
+            <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                 Create task
             </h2>
         </template>
 
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div
-                    class="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800"
-                >
-                    <div
-                        class="w-full p-4 bg-white rounded-lg sm:p-6 md:p-8 dark:bg-gray-800"
-                    >
+                <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
+                    <div class="w-full p-4 bg-white rounded-lg sm:p-6 md:p-8 dark:bg-gray-800">
                         <form @submit.prevent="submit" class="mx-0">
                             <div class="mb-4">
                                 <InputLabel for="name" value="Name" />
-                                <TextInput
-                                    id="name"
-                                    type="name"
-                                    class="mt-1 block w-full py-3 px-2 border"
-                                    v-model="form.name"
-                                />
-                                <InputError
-                                    class="mt-2"
-                                    :message="form.errors.name"
-                                />
+                                <Input id="name" type="name" class="mt-1 block w-full py-3 px-2 border"
+                                    v-model="form.name" />
+                                <InputError class="mt-2" :message="form.errors.name" />
+                            </div>
+                            <div class="mb-4">
+                                <InputLabel for="description" value="Description" />
+                                <Textarea id="description" type="description" class="mt-1 block w-full"
+                                    v-model="form.description" />
+                                <InputError class="mt-2" :message="form.errors.description" />
                             </div>
                             <div>
-                                <InputLabel
-                                    for="description"
-                                    value="Description"
-                                />
-                                <Textarea
-                                    id="description"
-                                    type="description"
-                                    class="mt-1 block w-full"
-                                    v-model="form.description"
-                                />
-                                <InputError
-                                    class="mt-2"
-                                    :message="form.errors.description"
-                                />
+                                <InputLabel for="due_by" value="Due date" />
+                                <Input type="date" name="due_by" id="due_by" v-model="form.due_by"
+                                    class="mt-1 block w-full py-3 px-2 border" />
+                                <InputError class="mt-2" :message="form.errors.description" />
                             </div>
                             <div class="mt-4 flex justify-end">
-                                <PrimaryButton
-                                    class="ms-4"
-                                    :class="{
-                                        'opacity-25': form.processing,
-                                    }"
-                                    :disabled="form.processing"
-                                >
+                                <PrimaryButton class="ms-4" :class="{
+                                    'opacity-25': form.processing,
+                                }" :disabled="form.processing">
                                     Create
                                 </PrimaryButton>
                             </div>

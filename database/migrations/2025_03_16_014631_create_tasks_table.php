@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
+            $table->date('due_by');
             $table->boolean('complete')->default(0);
             $table->foreignIdFor(User::class);
             $table->timestamps();
