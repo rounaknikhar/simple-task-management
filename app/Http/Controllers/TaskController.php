@@ -18,18 +18,23 @@ class TaskController extends Controller
      */
     public function index(Request $request): Response
     { 
-        $tasks = Task::where('user_id', auth()->user()->id)
+        // Get all tasks for the authenticated user.
+        $tasks = auth()->user()->tasks()
+        // Eager load user and tags.
         ->with(['user', 'tags'])
+        // Filter the search query.
         ->when($request->search, function ($query, $task){
                 $query->where('name', 'LIKE', '%' .$task. '%');
             })
+        // order by due date.
         ->orderBy('due_by', 'ASC')
         ->get();
 
+        // Group all tasks by it's due date.
         $grouppedTasks = Task::groupByDueDates($tasks);
 
         return Inertia::render('Task/Index', [
-            'groupedTasks' => $grouppedTasks // Group tasks by due date.
+            'groupedTasks' => $grouppedTasks
         ]);
     }
 

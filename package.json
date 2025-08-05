@@ -23,11 +23,14 @@
         "@headlessui/vue": "^1.7.23",
         "@heroicons/vue": "^2.2.0",
         "@kyvg/vue3-notification": "^3.4.1",
+        "@vueuse/core": "^13.6.0",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "lucide-react": "^0.482.0",
+        "moment": "^2.30.1",
         "tailwind-merge": "^3.0.2",
         "tailwindcss-animate": "^1.0.7",
+        "vue-moment": "^4.1.0",
         "vue3-toastify": "^0.2.8"
     }
 }
