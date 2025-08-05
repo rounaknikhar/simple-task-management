@@ -13,6 +13,9 @@ defineProps({
     tasks: {
         type: Object,
     },
+    groupedTasks: {
+        type: Object,
+    }
 });
 
 const searchForm = useForm({
@@ -52,16 +55,19 @@ watch(searchForm, (value) => {
                             </PrimaryLink>
                         </div>
                     </div>
-                    <div class="relative overflow-x-auto">
+                    <div class="relative overflow-x-auto" v-for="(groupedTask, index) in groupedTasks">
+                        <div class="block">
+                            <span class="text-2xl">{{ index }}</span>
+                        </div>
                         <div class="flex flex-row flex-wrap">
-                            <WhenVisible :data="tasks">
+                            <WhenVisible :data="groupedTask">
                                 <template #fallback>
                                     <div class="flex justify-center align-middle w-full h-screen">
                                         <img src="/loading.gif" alt="loading" class="w-auto h-[200px]">
                                     </div>
                                 </template>
                                 <!-- Task card -->
-                                <TaskCard v-for="task in tasks" :task="task" />
+                                <TaskCard v-for="task in groupedTask" :task="task" />
                             </WhenVisible>
                         </div>
                     </div>

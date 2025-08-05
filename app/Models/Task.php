@@ -49,4 +49,31 @@ class Task extends Model
     {
         return $this->belongsToMany(Tag::class, 'task_tag')->withTimestamps();
     }
+
+    /**
+     * Group the tasks by due dates.
+     */
+    public static function groupByDueDates($tasks) 
+    {
+        $dueDates = [];
+        $grouppedTasks = [];
+
+        // Get the due dates.
+        foreach ($tasks as $task) {
+            $dueDates[] = $task->due_by;
+        }
+        foreach ($dueDates as $dueDate) {
+            // Find tasks by due date.
+            $grouppedTask = [];
+            foreach ($tasks as $task) {
+                if($dueDate == $task->due_by) {
+                    $grouppedTask[] = $task;
+                }
+            }
+            // Merge all tasks to each due date.
+            $grouppedTasks[$dueDate] = $grouppedTask;
+        }
+
+        return $grouppedTasks;
+    }
 }
