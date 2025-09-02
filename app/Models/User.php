@@ -54,12 +54,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class);
     }
-
-    /**
-     * Get the tags that created by this user.
-     */
-    public function tags() : HasMany
-    {
-        return $this->hasMany(Tag::class);
-    }
 }

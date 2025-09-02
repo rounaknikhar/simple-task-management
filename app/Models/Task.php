@@ -43,14 +43,6 @@ class Task extends Model
     }
 
     /**
-     * Get all the tags attached to this task.
-     */
-    public function tags(): BelongsToMany
-    {
-        return $this->belongsToMany(Tag::class, 'task_tag')->withTimestamps();
-    }
-
-    /**
      * Group the tasks by due dates.
      */
     public static function groupByDueDates($tasks) 
