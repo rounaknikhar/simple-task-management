@@ -43,7 +43,7 @@ watch(searchForm, (value) => {
                     <form class="mx-0 mb-4 mt-4 ml-4 md:ml-0">
                         <div class="w-full flex flex-row align-middle justify-center">
                             <Input id="search" type="text" placeholder="Search a task..."
-                                class="py-1 w-full bg-stone-400 text-stone-900 border-stone-400"
+                                class="py-1 w-full bg-stone-700 text-stone-900 border-stone-400 placeholder-stone-500 placeholder-opacity-75"
                                 v-model="searchForm.search" autofocus />
                         </div>
                     </form>
@@ -84,7 +84,7 @@ watch(searchForm, (value) => {
                             <WhenVisible :data="groupedTask">
                                 <template #fallback>
                                     <div class="flex justify-center align-middle w-full h-screen">
-                                        <img src="/loading.gif" alt="loading" class="w-auto h-[200px]">
+                                        <img src="/spinner.gif" alt="loading" class="w-auto h-[50px]">
                                     </div>
                                 </template>
                                 <!-- Task card -->
