@@ -31,15 +31,15 @@ const submit = () => {
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+            <h2 class="text-xl font-semibold leading-tight text-stone-200">
                 Create task
             </h2>
         </template>
 
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
-                    <div class="w-full p-4 bg-white rounded-lg sm:p-6 md:p-8 dark:bg-gray-800">
+                <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-stone-800">
+                    <div class="w-full p-4 bg-white rounded-lg sm:p-6 md:p-8 dark:bg-stone-800">
                         <form @submit.prevent="submit" class="mx-0">
                             <div class="mb-4">
                                 <InputLabel for="name" value="Name" />

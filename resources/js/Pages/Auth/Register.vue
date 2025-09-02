@@ -64,7 +64,7 @@ const submit = () => {
 
             <div class="mt-4 flex items-center justify-end">
                 <Link :href="route('login')"
-                    class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800">
+                    class="rounded-md text-sm text-stone-600 underline hover:text-stone-900 focus:outline-none focus:ring-2 focus:ring-stone-500 focus:ring-offset-2 dark:text-stone-400 dark:hover:text-stone-100 dark:focus:ring-offset-stone-800">
                 Already registered?
                 </Link>
 

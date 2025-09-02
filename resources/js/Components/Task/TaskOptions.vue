@@ -44,7 +44,7 @@ const handleTaskStatus = (taskId) => {
                 <div class="py-1">
                     <MenuItem v-slot="{ active }">
                     <button href="#" class="w-full text-left" @click="handleTaskStatus(task.id)"
-                        :class="[active ? 'bg-gray-100 text-gray-900 outline-hidden' : 'text-gray-700', 'block px-4 py-2 text-sm']">
+                        :class="[active ? 'bg-stone-100 text-stone-900 outline-hidden' : 'text-stone-700', 'block px-4 py-2 text-sm']">
                         {{
                             !task.complete
                                 ? "Completed"
@@ -54,7 +54,7 @@ const handleTaskStatus = (taskId) => {
                     </MenuItem>
                     <MenuItem v-slot="{ active }">
                     <Link :href="route('tasks.edit', { task: task.id })"
-                        :class="[active ? 'bg-gray-100 text-gray-900 outline-hidden' : 'text-gray-700', 'block px-4 py-2 text-sm']">
+                        :class="[active ? 'bg-stone-100 text-stone-900 outline-hidden' : 'text-stone-700', 'block px-4 py-2 text-sm']">
                     Edit</Link>
                     </MenuItem>
                     <MenuItem v-slot="{ active }">

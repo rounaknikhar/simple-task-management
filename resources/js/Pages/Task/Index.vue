@@ -31,18 +31,19 @@ watch(searchForm, (value) => {
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+            <h2 class="text-xl font-semibold leading-tight text-stone-200">
                 My Tasks
             </h2>
         </template>
-        <div class="pb-12 pt-4 h-full">
+        <div class="pb-12 h-full">
             <div
-                class="mx-auto max-w-7xl sm:px-6 lg:px-8 bg-gradient-to-r from-stone-200 to-stone-300 sticky top-0 z-10 shadow-md">
-                <div class="mb-4 mr-4 flex align-middle justify-between">
+                class="mb-4 mx-auto max-w-7xl sm:px-6 lg:px-8 backdrop-filter backdrop-blur-md bg-opacity-20 sticky top-0 z-10 border-b border-stone-600">
+                <div class=" mr-4 flex align-middle justify-between">
                     <!-- Search -->
                     <form class="mx-0 mb-4 mt-4 ml-4 md:ml-0">
                         <div class="w-full flex flex-row align-middle justify-center">
-                            <Input id="search" type="text" placeholder="Search a task..." class="py-1 w-full"
+                            <Input id="search" type="text" placeholder="Search a task..."
+                                class="py-1 w-full bg-stone-400 text-stone-900 border-stone-400"
                                 v-model="searchForm.search" autofocus />
                         </div>
                     </form>
@@ -58,8 +59,8 @@ watch(searchForm, (value) => {
                 <div class="overflow-hidden pb-4">
                     <div class="relative overflow-x-auto mb-4" v-for="(groupedTask, index) in groupedTasks">
                         <div
-                            class="block bg-gradient-to-r from-stone-200 to-stone-300 px-2 py-4 rounded-md shadow-lg w-[90px] mx-2 mb-4 text-center">
-                            <span class="text-sm block">
+                            class="block backdrop-blur-md bg-stone-600 text-stone-300 px-2 py-4 rounded-md shadow-lg w-[90px] mx-2 mb-4 text-center">
+                            <span class="text-sm block text-stone-400">
                                 {{
                                     new Date(index).toLocaleString('default', {
                                         weekday: 'long'
@@ -71,7 +72,7 @@ watch(searchForm, (value) => {
                                     new Date(index).getDate()
                                 }}
                             </span>
-                            <span class="text-sm block">
+                            <span class="text-sm block text-stone-400">
                                 {{
                                     new Date(index).toLocaleString('default', {
                                         month: 'long'

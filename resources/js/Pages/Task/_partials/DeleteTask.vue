@@ -33,7 +33,7 @@ const deleteTask = () => {
 
 <template>
     <button class="w-full text-left"
-        :class="[active ? 'bg-gray-100 text-gray-900 outline-hidden' : 'text-gray-700', 'block px-4 py-2 text-sm']"
+        :class="[active ? 'bg-stone-100 text-stone-900 outline-hidden' : 'text-stone-700', 'block px-4 py-2 text-sm']"
         v-if="simpleLink" @click="deleteTask">
         Delete
     </button>

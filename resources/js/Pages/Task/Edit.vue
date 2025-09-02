@@ -43,15 +43,15 @@ const submit = () => {
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+            <h2 class="text-xl font-semibold leading-tight text-stone-200">
                 Update task
             </h2>
         </template>
 
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
-                    <div class="w-full p-4 bg-white rounded-lg sm:p-6 md:p-8 dark:bg-gray-800">
+                <div class="overflow-hidden shadow-sm sm:rounded-lg bg-stone-800">
+                    <div class="w-full p-4 rounded-lg sm:p-6 md:p-8 bg-stone-800">
                         <form @submit.prevent="submit" class="mx-0">
                             <div class="mb-4">
                                 <InputLabel for="name" value="Name" />
@@ -73,8 +73,8 @@ const submit = () => {
                             </div>
                             <div class="flex items-center">
                                 <input type="checkbox" v-model="form.complete"
-                                    class="mr-4 my-4 w-4 h-4 text-zinc-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-zinc-500 dark:focus:ring-zinc-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                                <label for="checkbox-table-search-1">
+                                    class="mr-4 my-4 w-4 h-4 text-stone-600 rounded-sm ring-offset-stone-800 focus:ring-offset-stone-800 focus:ring-2 bg-stone-700 border-stone-600" />
+                                <label for="checkbox-table-search-1" class="text-stone-100">
                                     {{
                                         form.complete
                                             ? "Completed"
