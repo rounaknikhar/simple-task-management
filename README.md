@@ -5,9 +5,9 @@
 ```shell
 # Run the following commands:
 
-php artisan key:generate
 composer i
 npm i
+php artisan key:generate
 php artisan migrate
 
 npm run dev
